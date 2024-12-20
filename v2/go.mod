@@ -1,4 +1,4 @@
-module github.com/Azure/azure-service-operator/v2
+module github.com/AndreiBarbuOz/azure-service-operator/v2
 
 go 1.22.0
 
