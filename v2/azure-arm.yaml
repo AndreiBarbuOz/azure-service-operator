@@ -98,6 +98,11 @@ typeFilters:
     because: We need ScheduledQueryRules from this.
 
   - action: include
+    group: insights
+    version: v*20250101preview
+    because: We need ScheduledQueryRules from this.
+
+  - action: include
     group: common
     because: we need these for common resource properties
 
@@ -3294,7 +3299,20 @@ objectModelConfiguration:
       DataCollectionRuleAssociationSpec:
         DataCollectionEndpointId: 
           $referenceType: arm
-        DataCollectionRuleId: 
+        DataCollectionRuleId:
+          $referenceType: arm
+    2025-01-01-preview:
+      ScheduledQueryRule:
+        $exportAs: ScheduledQueryRule
+        $supportedFrom: v2.18.0
+      Actions:
+        ActionGroups:
+          $referenceType: arm
+      Condition:
+        ResourceIdColumn:
+          $referenceType: arm
+      ScheduledQueryRuleProperties:
+        Scopes:
           $referenceType: arm
     2024-01-01-preview:
       ScheduledQueryRule:

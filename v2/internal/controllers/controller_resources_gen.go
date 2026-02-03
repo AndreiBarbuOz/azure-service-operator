@@ -243,6 +243,9 @@ import (
 	insights_v20240101p "github.com/Azure/azure-service-operator/v2/api/insights/v1api20240101preview"
 	insights_v20240101ps "github.com/Azure/azure-service-operator/v2/api/insights/v1api20240101preview/storage"
 	insights_v20240101pw "github.com/Azure/azure-service-operator/v2/api/insights/v1api20240101preview/webhook"
+	insights_v20250101p "github.com/Azure/azure-service-operator/v2/api/insights/v20250101preview"
+	insights_v20250101ps "github.com/Azure/azure-service-operator/v2/api/insights/v20250101preview/storage"
+	insights_v20250101pw "github.com/Azure/azure-service-operator/v2/api/insights/v20250101preview/webhook"
 	keyvault_customizations "github.com/Azure/azure-service-operator/v2/api/keyvault/customizations"
 	keyvault_v20210401p "github.com/Azure/azure-service-operator/v2/api/keyvault/v1api20210401preview"
 	keyvault_v20210401ps "github.com/Azure/azure-service-operator/v2/api/keyvault/v1api20210401preview/storage"
@@ -4546,6 +4549,12 @@ func getKnownTypes() []*registration.KnownType {
 	})
 	result = append(result, &registration.KnownType{Obj: new(insights_v20240101ps.ScheduledQueryRule)})
 	result = append(result, &registration.KnownType{
+		Obj:       new(insights_v20250101p.ScheduledQueryRule),
+		Defaulter: &insights_v20250101pw.ScheduledQueryRule{},
+		Validator: &insights_v20250101pw.ScheduledQueryRule{},
+	})
+	result = append(result, &registration.KnownType{Obj: new(insights_v20250101ps.ScheduledQueryRule)})
+	result = append(result, &registration.KnownType{
 		Obj:       new(keyvault_v20210401p.Vault),
 		Defaulter: &keyvault_v20210401pw.Vault{},
 		Validator: &keyvault_v20210401pw.Vault{},
@@ -6054,6 +6063,8 @@ func createScheme() *runtime.Scheme {
 	_ = insights_v20230601s.AddToScheme(scheme)
 	_ = insights_v20240101p.AddToScheme(scheme)
 	_ = insights_v20240101ps.AddToScheme(scheme)
+	_ = insights_v20250101p.AddToScheme(scheme)
+	_ = insights_v20250101ps.AddToScheme(scheme)
 	_ = keyvault_v20210401p.AddToScheme(scheme)
 	_ = keyvault_v20210401ps.AddToScheme(scheme)
 	_ = keyvault_v20230701.AddToScheme(scheme)
